@@ -13,6 +13,13 @@ A simple Genshin Impact Launcher WRITTEN with VB.NET
 - InGame Setting (Voice,language,Volume)
 - Auto CheckUpdate
 
+## How to use
+1. download this app
+2. Extract and put it wherever you want
+3. open the application.(Automatically retrieves your genshin settings data)
+4. now you can change the resolution size, graphics,language and sound in ingame
+5. Have Fun!!!
+
 
 ## Download
 
@@ -30,7 +37,6 @@ There are some requirements you'd need to:
 - Neither of this project nor me have any relation with miHoYo. I'm just one of their many players.
 - This launcher is NOT a replacement for the original launcher!
 - The source code is a complete mess.  
-  I wish you the best luck reading them because at this point, only God knows how to read it.
   
 ## License
 
