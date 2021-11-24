@@ -2,7 +2,8 @@
 A simple Genshin Impact Launcher WRITTEN with VB.NET
 
 ## Screenshots
-![image]()
+![image](https://github.com/4kumano/LauncherGI/blob/main/image/Screenshot_522.png)
+![image2](https://github.com/4kumano/LauncherGI/blob/main/image/Screenshot_521.png)
 
 ## Feature
 - Custom Resolutions
