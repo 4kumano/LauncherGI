@@ -1,0 +1,15 @@
+C:\Users\Irfan Febrian\source\repos\LauncherGI\LauncherGI\bin\Debug\LauncherGI.exe.config
+C:\Users\Irfan Febrian\source\repos\LauncherGI\LauncherGI\bin\Debug\LauncherGI.exe
+C:\Users\Irfan Febrian\source\repos\LauncherGI\LauncherGI\bin\Debug\LauncherGI.pdb
+C:\Users\Irfan Febrian\source\repos\LauncherGI\LauncherGI\bin\Debug\LauncherGI.xml
+C:\Users\Irfan Febrian\source\repos\LauncherGI\LauncherGI\obj\Debug\LauncherGI.Form1.resources
+C:\Users\Irfan Febrian\source\repos\LauncherGI\LauncherGI\obj\Debug\LauncherGI.Resources.resources
+C:\Users\Irfan Febrian\source\repos\LauncherGI\LauncherGI\obj\Debug\LauncherGI.vbproj.GenerateResource.cache
+C:\Users\Irfan Febrian\source\repos\LauncherGI\LauncherGI\obj\Debug\LauncherGI.vbproj.CoreCompileInputs.cache
+C:\Users\Irfan Febrian\source\repos\LauncherGI\LauncherGI\obj\Debug\LauncherGI.exe
+C:\Users\Irfan Febrian\source\repos\LauncherGI\LauncherGI\obj\Debug\LauncherGI.xml
+C:\Users\Irfan Febrian\source\repos\LauncherGI\LauncherGI\obj\Debug\LauncherGI.pdb
+C:\Users\Irfan Febrian\source\repos\LauncherGI\LauncherGI\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Irfan Febrian\source\repos\LauncherGI\LauncherGI\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Irfan Febrian\source\repos\LauncherGI\LauncherGI\obj\Debug\LauncherGI.Form2.resources
+C:\Users\Irfan Febrian\source\repos\LauncherGI\LauncherGI\obj\Debug\LauncherGI.vbproj.AssemblyReference.cache
