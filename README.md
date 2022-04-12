@@ -23,6 +23,12 @@ A simple Genshin Impact Launcher WRITTEN with VB.NET
 4. now you can change the resolution size, graphics,language and sound in ingame
 5. Have Fun!!!
 
+## How to use Auto CheckUpdate 
+1. Go to LauncherGI folder
+2. open config.ini
+3. edit `CheckUpdate=True` to `CheckUpdate=False`
+
+
 
 ## Download
 
