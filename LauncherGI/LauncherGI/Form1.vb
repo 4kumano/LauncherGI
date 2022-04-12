@@ -634,4 +634,9 @@ Public Class Form1
     Private Sub BtnKill_Click(sender As Object, e As EventArgs) Handles BtnKill.Click
         Call killGI()
     End Sub
+
+    Private Sub LB_About_Click(sender As Object, e As EventArgs) Handles LB_About.Click
+        Dim webAddress As String = "https://github.com/4kumano/LauncherGI"
+        Process.Start(webAddress)
+    End Sub
 End Class

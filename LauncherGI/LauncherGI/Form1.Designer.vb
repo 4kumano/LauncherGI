@@ -40,7 +40,7 @@ Partial Class Form1
         Me.Label5 = New System.Windows.Forms.Label()
         Me.cb_lowset = New System.Windows.Forms.CheckBox()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
-        Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.LB_About = New System.Windows.Forms.ToolStripStatusLabel()
         Me.TSSL_ver = New System.Windows.Forms.ToolStripStatusLabel()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.lv_AccList = New System.Windows.Forms.ListView()
@@ -200,19 +200,19 @@ Partial Class Form1
         '
         'StatusStrip1
         '
-        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1, Me.TSSL_ver})
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LB_About, Me.TSSL_ver})
         Me.StatusStrip1.Location = New System.Drawing.Point(0, 258)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Size = New System.Drawing.Size(637, 22)
         Me.StatusStrip1.TabIndex = 16
         Me.StatusStrip1.Text = "StatusStrip1"
         '
-        'ToolStripStatusLabel1
+        'LB_About
         '
-        Me.ToolStripStatusLabel1.IsLink = True
-        Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
-        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(40, 17)
-        Me.ToolStripStatusLabel1.Text = "About"
+        Me.LB_About.IsLink = True
+        Me.LB_About.Name = "LB_About"
+        Me.LB_About.Size = New System.Drawing.Size(40, 17)
+        Me.LB_About.Text = "About"
         '
         'TSSL_ver
         '
@@ -382,5 +382,5 @@ Partial Class Form1
     Friend WithEvents cb_NoPop As CheckBox
     Friend WithEvents ColumnHeader1 As ColumnHeader
     Friend WithEvents cb_MultiAcc As CheckBox
-    Friend WithEvents ToolStripStatusLabel1 As ToolStripStatusLabel
+    Friend WithEvents LB_About As ToolStripStatusLabel
 End Class
