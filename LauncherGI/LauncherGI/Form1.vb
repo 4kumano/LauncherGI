@@ -7,9 +7,7 @@ Imports System.Web.Script.Serialization
 Imports System.Text.Encoding.Unicode
 Imports Newtonsoft.Json.Linq
 Imports Newtonsoft.Json
-
-
-
+Imports LauncherGI.GenshinAccount
 
 Public Class Form1
     Private SystemFolderList As New List(Of String)
@@ -23,17 +21,24 @@ Public Class Form1
     Dim get_locationgame As String
     Dim get_value As Byte()
     '===========================[info]===================================
-    Dim versi As String = "1.7"
+    Dim versi As String = "1.8"
     Dim appname As String = "LauncherGI " + ".v" + versi
-    '==========================[Set key]=================================
-    Dim Key As RegistryKey
+    '==========================[Set Parm]=================================
+    Dim boder As String
+    Dim Fscreen As String
+    Dim Sw As String
+    Dim Sh As String
+    Dim GQ As String
     '==========================[regedit]=================================
+    Dim Key As RegistryKey
     Dim screen_h As String = "Screenmanager Resolution Height_h2627697771"
     Dim screen_w As String = "Screenmanager Resolution Width_h182942802"
     Dim graphicQ As String = "UnityGraphicsQuality_h1669003810"
     Dim fullscreen As String = "Screenmanager Is Fullscreen mode_h3981298716"
-
-
+    '==========================[UserData]=================================
+    Private ReadOnly UserDataPath As String = Path.Combine(Application.StartupPath, "UserData")
+    Private thisVersion As String
+    Private acctMenuItemList As List(Of ToolStripMenuItem) = New List(Of ToolStripMenuItem)()
 
 #Region "BrowseForFolder"
     Private Function BrowseForFolder() As Boolean
@@ -110,6 +115,8 @@ Public Class Form1
         writeini(FilePathInI, "Setting Config", "Border", True)
         writeini(FilePathInI, "Setting Config", "LowSetting", False)
         writeini(FilePathInI, "Setting Config", "Game", setlocalgame)
+        writeini(FilePathInI, "Setting Config", "Multi", False)
+        writeini(FilePathInI, "Setting Config", "CheckUpdate", True)
     End Sub
 
     Sub LoadDATA()
@@ -121,7 +128,8 @@ Public Class Form1
         Dim config6 As String = readini(FilePathInI, "Setting Config", "border", "")
         Dim config7 As String = readini(FilePathInI, "Setting Config", "LowSetting", "")
         Dim config8 As String = readini(FilePathInI, "Setting Config", "Game", "")
-
+        Dim config9 As String = readini(FilePathInI, "Setting Config", "Multi", "")
+        Dim config10 As String = readini(FilePathInI, "Setting Config", "CheckUpdate", "")
 
         Tx_W.Text = config1
         Tx_H.Text = config2
@@ -132,14 +140,21 @@ Public Class Form1
         cb_Resolusi.Checked = config5
         cb_Border.Checked = config6
         cb_lowset.Checked = config7
+
+        cb_MultiAcc.Checked = config9
+        MultiAcc()
+
+        If config10 = True Then
+            TSSL_ver.Text = "Check Update..."
+            TSSL_ver.ForeColor = Color.Orange
+            Threading.Thread.Sleep(1000)
+            cekupdate()
+        Else
+
+        End If
+
     End Sub
     Sub saveDATA()
-        Dim bb As Integer
-        If cb_Window.Checked = True Then
-            bb = 0
-        Else
-            bb = 1
-        End If
 
         writeini(FilePathInI, "Setting Config", "Width", Tx_W.Text)
         writeini(FilePathInI, "Setting Config", "Height", Tx_H.Text)
@@ -148,6 +163,7 @@ Public Class Form1
         writeini(FilePathInI, "Setting Config", "Custom", cb_Resolusi.Checked)
         writeini(FilePathInI, "Setting Config", "border", cb_Border.Checked)
         writeini(FilePathInI, "Setting Config", "Game", Tx_Game.Text)
+        writeini(FilePathInI, "Setting Config", "Multi", cb_MultiAcc.Checked)
     End Sub
 
 #Region "Update"
@@ -196,7 +212,7 @@ Public Class Form1
             Dim msg As String = "LauncherGI version has been updated!" + vbCrLf + "New Update : " + ver + vbCrLf + "do you want to update?"
             If versi = ver Then
                 TSSL_ver.ForeColor = Color.Green
-                TSSL_ver.Text = "LastUpdate!"
+                TSSL_ver.Text = "Last Update!"
                 Threading.Thread.Sleep(1000)
 
             Else
@@ -205,7 +221,7 @@ Public Class Form1
                     Me.Close()
                 End If
                 TSSL_ver.ForeColor = Color.Orange
-                TSSL_ver.Text = "OutUpdate!"
+                TSSL_ver.Text = "Out of date!"
                 Threading.Thread.Sleep(1000)
 
             End If
@@ -215,122 +231,102 @@ Public Class Form1
     End Sub
 #End Region
 
-    Sub info()
-        Dim keyname As String = "HKEY_CURRENT_USER\Software\miHoYo\Genshin Impact"
+    'Sub info()
+    '    Dim keyname As String = "HKEY_CURRENT_USER\Software\miHoYo\Genshin Impact"
 
-        Dim valueName As String = "GENERAL_DATA_h2389025596"
+    '    Dim valueName As String = "GENERAL_DATA_h2389025596"
 
-        Dim s As String = ""
+    '    Dim s As String = ""
 
-        Dim readValue As Byte() = My.Computer.Registry.GetValue(keyname, valueName, Nothing)
+    '    Dim readValue As Byte() = My.Computer.Registry.GetValue(keyname, valueName, Nothing)
 
-        For i = 0 To readValue.Count - 1
+    '    For i = 0 To readValue.Count - 1
 
-            s &= Format(readValue(i), "X2") & " "
+    '        s &= Format(readValue(i), "X2") & " "
 
-        Next
+    '    Next
 
-        RTB1.Select()
-        RTB1.AppendText(s)
-        Debug.Print(s)
+    '    RTB1.Select()
+    '    RTB1.AppendText(s)
+    '    Debug.Print(s)
 
-        RTB2.Text = HexToString(s)
+    '    RTB2.Text = HexToString(s)
 
-        Dim val As String
-        val = RTB2.Text
-        Dim location As String = Application.StartupPath & "\hasil.json"
-        IO.File.WriteAllText(Location, RTB2.Text)
+    '    Dim val As String
+    '    val = RTB2.Text
+    '    Dim location As String = Application.StartupPath & "\hasil.json"
+    '    IO.File.WriteAllText(location, RTB2.Text)
 
-        RTB3.Text = GetHexString(val)
-        Dim hextobin As String = RTB3.Text
-        Dim length As Integer = hextobin.Length
-        Dim upperBound As Integer = length \ 2
-        If length Mod 2 = 0 Then
-            upperBound -= 1
+    '    RTB3.Text = GetHexString(val)
+    '    Dim hextobin As String = RTB3.Text
+    '    Dim length As Integer = hextobin.Length
+    '    Dim upperBound As Integer = length \ 2
+    '    If length Mod 2 = 0 Then
+    '        upperBound -= 1
+    '    Else
+    '        hextobin = "0" & hextobin
+    '    End If
+    '    Dim bytes(upperBound) As Byte
+    '    For i As Integer = 0 To upperBound
+    '        bytes(i) = Convert.ToByte(hextobin.Substring(i * 2, 2), 16)
+    '    Next
+
+    '    Dim s2 As String = ""
+    '    For i2 = 0 To bytes.Count - 1
+
+    '        s2 &= Format(bytes(i2), "X2") & " "
+
+    '    Next
+
+    '    RTB4.AppendText(s2)
+
+    '    Dim asd As JObject = JObject.Parse(val)
+
+    '    Dim adf As JToken = asd.SelectToken("volumeGlobal")
+    '    adf.Replace(7)
+    '    TextBox1.Text = asd.Item("volumeGlobal").ToString
+    '    RTB5.Text = asd.ToString
+    '    Dim ag As String = JsonConvert.SerializeObject(asd)
+
+    '    RTB6.Text = ag.ToString
+    '    RTB7.Text = GetHexString(RTB6.Text)
+    '    Dim a1 As String = RTB7.Text
+    '    Dim a2 As Integer = a1.Length
+    '    Dim a3 As Integer = a2 \ 2
+    '    If a2 Mod 2 = 0 Then
+    '        a3 -= 1
+    '    Else
+    '        a1 = "0" & a1
+    '    End If
+    '    Dim bytesa3(a3) As Byte
+    '    For c1 As Integer = 0 To a3
+    '        bytesa3(c1) = Convert.ToByte(a1.Substring(c1 * 2, 2), 16)
+    '    Next
+
+    '    Dim b1 As String = ""
+    '    For b2 = 0 To bytesa3.Count - 1
+
+    '        b1 &= Format(bytesa3(b2), "X2") & " "
+
+    '    Next
+
+    '    RTB8.AppendText(b1)
+    '    RTB9.Text = HexToString(b1)
+    '    'Key = Registry.CurrentUser.OpenSubKey("Software\miHoYo\Genshin Impact", True)
+    '    'Key.SetValue(valueName, bytesa3, RegistryValueKind.Binary)
+
+
+    'End Sub
+    Sub MultiAcc()
+        If cb_MultiAcc.Checked = True Then
+            Me.Size = New Size(653, 319)
         Else
-            hextobin = "0" & hextobin
+            Me.Size = New Size(327, 319)
         End If
-        Dim bytes(upperBound) As Byte
-        For i As Integer = 0 To upperBound
-            bytes(i) = Convert.ToByte(hextobin.Substring(i * 2, 2), 16)
-        Next
-
-        Dim s2 As String = ""
-        For i2 = 0 To bytes.Count - 1
-
-            s2 &= Format(bytes(i2), "X2") & " "
-
-        Next
-
-        RTB4.AppendText(s2)
-
-        Dim asd As JObject = JObject.Parse(val)
-
-        Dim adf As JToken = asd.SelectToken("volumeGlobal")
-        adf.Replace(7)
-        TextBox1.Text = asd.Item("volumeGlobal").ToString
-        RTB5.Text = asd.ToString
-        Dim ag As String = JsonConvert.SerializeObject(asd)
-
-        RTB6.Text = ag.ToString
-        RTB7.Text = GetHexString(RTB6.Text)
-        Dim a1 As String = RTB7.Text
-        Dim a2 As Integer = a1.Length
-        Dim a3 As Integer = a2 \ 2
-        If a2 Mod 2 = 0 Then
-            a3 -= 1
-        Else
-            a1 = "0" & a1
-        End If
-        Dim bytesa3(a3) As Byte
-        For c1 As Integer = 0 To a3
-            bytesa3(c1) = Convert.ToByte(a1.Substring(c1 * 2, 2), 16)
-        Next
-
-        Dim b1 As String = ""
-        For b2 = 0 To bytesa3.Count - 1
-
-            b1 &= Format(bytesa3(b2), "X2") & " "
-
-        Next
-
-        RTB8.AppendText(b1)
-        RTB9.Text = HexToString(b1)
-        'Key = Registry.CurrentUser.OpenSubKey("Software\miHoYo\Genshin Impact", True)
-        'Key.SetValue(valueName, bytesa3, RegistryValueKind.Binary)
-
-
     End Sub
-
-
-    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-        Me.Text = appname
-        TSSL_ver.Text = "Check Update..."
-        TSSL_ver.ForeColor = Color.Orange
-        Threading.Thread.Sleep(1000)
-        cekupdate()
-        'Tx_Game.Text = get_location
-        'info()
-
-        If Not IO.File.Exists(FilePathInI) Then
-
-            getDATA()
-            setDATA()
-            LoadDATA()
-        Else
-            LoadDATA()
-        End If
-
-    End Sub
-    Private Sub btn_StartGame_Click(sender As Object, e As EventArgs) Handles btn_StartGame.Click
-
-        Dim boder As String
-        Dim Fscreen As String
-        Dim Sw As String = Tx_W.Text
-        Dim Sh As String = Tx_H.Text
-        Dim GQ As String
-
+    Sub setParm()
+        Sw = Tx_W.Text
+        Sh = Tx_H.Text
         If cb_Border.Checked = True Then
             boder = " -popupwindow "
         Else
@@ -368,21 +364,146 @@ Public Class Form1
                     GQ = ""
             End Select
         End If
+    End Sub
+    Sub OpenGame(gameloc As String, param As String)
+        Dim p As New ProcessStartInfo
+        p.FileName = gameloc
+        p.Arguments = param
+        p.UseShellExecute = True
+        p.WindowStyle = ProcessWindowStyle.Normal
+        Process.Start(p)
 
+    End Sub
+    Private Function GenshinIsRunning() As Boolean
+        Dim pros = Process.GetProcessesByName("YuanShen")
 
+        If pros.Any() Then
+            Return True
+        Else
+            pros = Process.GetProcessesByName("GenshinImpact")
+            Return pros.Any()
+        End If
+    End Function
+    Sub killGI()
+        Dim pros = Process.GetProcessesByName("GenshinImpact")
 
+        If pros.Any() Then
+            pros(0).Kill()
+        End If
+    End Sub
+
+    Private Sub Switch(ByVal name As String, ByVal autoRestart As Boolean, ByVal param As String)
+        If String.IsNullOrEmpty(name) Then
+            MessageBox.Show("Please select an account to switch", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Return
+        End If
+        If Not autoRestart Then
+            If GenshinIsRunning() Then
+                MessageBox.Show("Genshin Impact is running, please close the game process before switching accounts!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Return
+            End If
+        End If
+        If cb_NoPop.Checked OrElse MessageBox.Show($"Do you want to switch to[{name}]", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+
+            If autoRestart Then
+                Call killGI()
+            End If
+
+            Dim acct As GIAcc = GIAcc.ReadFromDisk(name)
+            acct.WriteToRegedit()
+
+            If autoRestart Then
+
+                If String.IsNullOrEmpty(Tx_Game.Text) Then
+                    MessageBox.Show("Please select the Genshin installation path before you can use the automatic restart function", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    cb_autoRestart.Checked = False
+                Else
+
+                    Try
+                        Dim startInfo As ProcessStartInfo = New ProcessStartInfo()
+                        startInfo.UseShellExecute = True
+                        startInfo.WorkingDirectory = Environment.CurrentDirectory
+                        startInfo.FileName = Path.Combine(Tx_Game.Text, "GenshinImpact.exe")
+                        startInfo.Verb = "runas"
+                        startInfo.Arguments = param
+                        Process.Start(startInfo)
+                    Catch
+                    End Try
+                End If
+            End If
+
+            If Not cb_NoPop.Checked Then
+                MessageBox.Show($"account[{name}]switch successfully", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            End If
+        End If
+
+    End Sub
+    Sub RefrestList()
+        If Not Directory.Exists(UserDataPath) Then
+            Directory.CreateDirectory(UserDataPath)
+        End If
+
+        lv_AccList.Items.Clear()
+        acctMenuItemList.Clear()
+        Dim root As DirectoryInfo = New DirectoryInfo(UserDataPath)
+        Dim files As FileInfo() = root.GetFiles()
+
+        For Each file As FileInfo In files
+            lv_AccList.Items.Add(New ListViewItem() With {
+                .Text = file.Name
+            })
+            Dim m As ToolStripMenuItem = New ToolStripMenuItem() With {
+                .Name = file.Name,
+                .Text = file.Name
+            }
+            acctMenuItemList.Add(m)
+
+        Next
+
+        If lv_AccList.Items.Count > 0 Then
+            btnDeleteAcc.Enabled = True
+            BtnSwitchAcc.Enabled = True
+        Else
+            btnDeleteAcc.Enabled = False
+            BtnSwitchAcc.Enabled = False
+        End If
+    End Sub
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        Me.Text = appname
+        TSSL_ver.ForeColor = Color.Green
+        TSSL_ver.Text = "Last Update!"
+        Threading.Thread.Sleep(1000)
+        'cekupdate()
+        'Tx_Game.Text = get_location
+        'info()
+
+        If Not IO.File.Exists(FilePathInI) Then
+
+            getDATA()
+            setDATA()
+            LoadDATA()
+        Else
+            LoadDATA()
+        End If
+
+        lv_AccList.Columns(0).Width = lv_AccList.Width
+        Dim imageList As ImageList = New ImageList()
+        imageList.ImageSize = New Size(10, 20)
+        lv_AccList.SmallImageList = imageList
+        RefrestList()
+    End Sub
+    Private Sub btn_StartGame_Click(sender As Object, e As EventArgs) Handles btn_StartGame.Click
+        setParm()
+        Dim param As String = " -screen-width " & Sw & " -screen-height " & Sh & " -screen-fullscreen " & Fscreen & boder & GQ
+        saveDATA()
         Dim gameGI As String
         gameGI = Tx_Game.Text & "\" + "GenshinImpact.exe"
         If Not IO.File.Exists(gameGI) Then
             MsgBox("Something Wrong! " + vbCrLf + " I'm can't not find GenshinImpact.exe!", vbCritical)
             End
         Else
-            Dim p As New ProcessStartInfo
-            p.FileName = gameGI
-            p.Arguments = " -screen-width " & Sw & " -screen-height " & Sh & " -screen-fullscreen " & Fscreen & boder & GQ
-            p.UseShellExecute = True
-            p.WindowStyle = ProcessWindowStyle.Normal
-            Process.Start(p)
+            OpenGame(gameGI, param)
         End If
 
 
@@ -464,4 +585,53 @@ Public Class Form1
         Form2.ShowDialog()
     End Sub
 
+    Private Sub btnDeleteAcc_Click(sender As Object, e As EventArgs) Handles btnDeleteAcc.Click
+        If lv_AccList.SelectedItems.Count = 0 Then
+            MessageBox.Show("Please select an account to switch", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Return
+        End If
+
+        Dim name As String = lv_AccList.SelectedItems(0)?.Text
+
+        If String.IsNullOrEmpty(name) Then
+            MessageBox.Show("Please select an account to switch", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Return
+        End If
+
+        Dim acct As GIAcc
+        acct.DeleteFromDisk(name)
+        RefrestList()
+    End Sub
+
+    Private Sub BtnSwitchAcc_Click(sender As Object, e As EventArgs) Handles BtnSwitchAcc.Click
+        setParm()
+        Dim param As String = " -screen-width " & Sw & " -screen-height " & Sh & " -screen-fullscreen " & Fscreen & boder & GQ
+        saveDATA()
+
+        If lv_AccList.SelectedItems.Count = 0 Then
+            MessageBox.Show("Please select an account to switch", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Return
+        End If
+
+        Dim name As String = lv_AccList.SelectedItems(0)?.Text
+        Switch(name, cb_autoRestart.Checked, param)
+    End Sub
+
+    Private Sub btnSaveAcc_Click(sender As Object, e As EventArgs) Handles btnSaveAcc.Click
+        Dim form As Form3 = New Form3()
+        form.ShowDialog()
+        RefrestList()
+    End Sub
+
+    Private Sub cb_MultiAcc_CheckedChanged(sender As Object, e As EventArgs) Handles cb_MultiAcc.CheckedChanged
+        MultiAcc()
+    End Sub
+
+    Private Sub Form1_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        saveDATA()
+    End Sub
+
+    Private Sub BtnKill_Click(sender As Object, e As EventArgs) Handles BtnKill.Click
+        Call killGI()
+    End Sub
 End Class

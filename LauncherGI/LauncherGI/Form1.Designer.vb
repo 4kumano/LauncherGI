@@ -40,18 +40,18 @@ Partial Class Form1
         Me.Label5 = New System.Windows.Forms.Label()
         Me.cb_lowset = New System.Windows.Forms.CheckBox()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
+        Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.TSSL_ver = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.RTB1 = New System.Windows.Forms.RichTextBox()
-        Me.RTB2 = New System.Windows.Forms.RichTextBox()
-        Me.RTB3 = New System.Windows.Forms.RichTextBox()
-        Me.RTB4 = New System.Windows.Forms.RichTextBox()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.RTB5 = New System.Windows.Forms.RichTextBox()
-        Me.RTB6 = New System.Windows.Forms.RichTextBox()
-        Me.RTB7 = New System.Windows.Forms.RichTextBox()
-        Me.RTB8 = New System.Windows.Forms.RichTextBox()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.RTB9 = New System.Windows.Forms.RichTextBox()
+        Me.lv_AccList = New System.Windows.Forms.ListView()
+        Me.ColumnHeader1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.btnSaveAcc = New System.Windows.Forms.Button()
+        Me.BtnSwitchAcc = New System.Windows.Forms.Button()
+        Me.btnDeleteAcc = New System.Windows.Forms.Button()
+        Me.BtnKill = New System.Windows.Forms.Button()
+        Me.cb_autoRestart = New System.Windows.Forms.CheckBox()
+        Me.cb_NoPop = New System.Windows.Forms.CheckBox()
+        Me.cb_MultiAcc = New System.Windows.Forms.CheckBox()
         Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -59,14 +59,14 @@ Partial Class Form1
         '
         Me.Tx_W.Location = New System.Drawing.Point(65, 42)
         Me.Tx_W.Name = "Tx_W"
-        Me.Tx_W.Size = New System.Drawing.Size(126, 20)
+        Me.Tx_W.Size = New System.Drawing.Size(156, 20)
         Me.Tx_W.TabIndex = 0
         '
         'Tx_H
         '
         Me.Tx_H.Location = New System.Drawing.Point(65, 69)
         Me.Tx_H.Name = "Tx_H"
-        Me.Tx_H.Size = New System.Drawing.Size(126, 20)
+        Me.Tx_H.Size = New System.Drawing.Size(156, 20)
         Me.Tx_H.TabIndex = 1
         '
         'CB_Graphics
@@ -74,21 +74,21 @@ Partial Class Form1
         Me.CB_Graphics.FormattingEnabled = True
         Me.CB_Graphics.ItemHeight = 13
         Me.CB_Graphics.Items.AddRange(New Object() {"Default", "Fastest", "Fast", "Simple", "Good", "Beautiful", "Fantastic", "Console"})
-        Me.CB_Graphics.Location = New System.Drawing.Point(98, 123)
+        Me.CB_Graphics.Location = New System.Drawing.Point(98, 129)
         Me.CB_Graphics.Name = "CB_Graphics"
         Me.CB_Graphics.Size = New System.Drawing.Size(126, 21)
         Me.CB_Graphics.TabIndex = 2
         '
         'Tx_Game
         '
-        Me.Tx_Game.Location = New System.Drawing.Point(54, 151)
+        Me.Tx_Game.Location = New System.Drawing.Point(65, 162)
         Me.Tx_Game.Name = "Tx_Game"
-        Me.Tx_Game.Size = New System.Drawing.Size(170, 20)
+        Me.Tx_Game.Size = New System.Drawing.Size(159, 20)
         Me.Tx_Game.TabIndex = 3
         '
         'btn_StartGame
         '
-        Me.btn_StartGame.Location = New System.Drawing.Point(15, 179)
+        Me.btn_StartGame.Location = New System.Drawing.Point(15, 199)
         Me.btn_StartGame.Name = "btn_StartGame"
         Me.btn_StartGame.Size = New System.Drawing.Size(283, 48)
         Me.btn_StartGame.TabIndex = 4
@@ -97,9 +97,9 @@ Partial Class Form1
         '
         'btn_FolderGame
         '
-        Me.btn_FolderGame.Location = New System.Drawing.Point(230, 151)
+        Me.btn_FolderGame.Location = New System.Drawing.Point(227, 161)
         Me.btn_FolderGame.Name = "btn_FolderGame"
-        Me.btn_FolderGame.Size = New System.Drawing.Size(68, 22)
+        Me.btn_FolderGame.Size = New System.Drawing.Size(68, 20)
         Me.btn_FolderGame.TabIndex = 5
         Me.btn_FolderGame.Text = "..."
         Me.btn_FolderGame.UseVisualStyleBackColor = True
@@ -125,7 +125,7 @@ Partial Class Form1
         'cb_Resolusi
         '
         Me.cb_Resolusi.AutoSize = True
-        Me.cb_Resolusi.Location = New System.Drawing.Point(197, 15)
+        Me.cb_Resolusi.Location = New System.Drawing.Point(227, 15)
         Me.cb_Resolusi.Name = "cb_Resolusi"
         Me.cb_Resolusi.Size = New System.Drawing.Size(61, 17)
         Me.cb_Resolusi.TabIndex = 8
@@ -138,7 +138,7 @@ Partial Class Form1
         Me.CB_Presets.Items.AddRange(New Object() {"3840 x 2160 (16:9)", "2560 x 1440 (16:9)", "1920 x 1080 (16:9)", "1366 x 768 (16:9)", "1280 x 720 (16:9)", "1024 x 576 (16:9)", "960 x 540 (16:9)", "854 x 480 (16:9)"})
         Me.CB_Presets.Location = New System.Drawing.Point(65, 13)
         Me.CB_Presets.Name = "CB_Presets"
-        Me.CB_Presets.Size = New System.Drawing.Size(126, 21)
+        Me.CB_Presets.Size = New System.Drawing.Size(156, 21)
         Me.CB_Presets.TabIndex = 9
         '
         'Label3
@@ -153,7 +153,7 @@ Partial Class Form1
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(6, 126)
+        Me.Label4.Location = New System.Drawing.Point(6, 132)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(90, 13)
         Me.Label4.TabIndex = 11
@@ -162,7 +162,7 @@ Partial Class Form1
         'cb_Window
         '
         Me.cb_Window.AutoSize = True
-        Me.cb_Window.Location = New System.Drawing.Point(7, 95)
+        Me.cb_Window.Location = New System.Drawing.Point(9, 101)
         Me.cb_Window.Name = "cb_Window"
         Me.cb_Window.Size = New System.Drawing.Size(77, 17)
         Me.cb_Window.TabIndex = 12
@@ -172,7 +172,7 @@ Partial Class Form1
         'cb_Border
         '
         Me.cb_Border.AutoSize = True
-        Me.cb_Border.Location = New System.Drawing.Point(108, 95)
+        Me.cb_Border.Location = New System.Drawing.Point(92, 101)
         Me.cb_Border.Name = "cb_Border"
         Me.cb_Border.Size = New System.Drawing.Size(75, 17)
         Me.cb_Border.TabIndex = 13
@@ -182,7 +182,7 @@ Partial Class Form1
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(6, 154)
+        Me.Label5.Location = New System.Drawing.Point(12, 165)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(41, 13)
         Me.Label5.TabIndex = 14
@@ -191,7 +191,7 @@ Partial Class Form1
         'cb_lowset
         '
         Me.cb_lowset.AutoSize = True
-        Me.cb_lowset.Location = New System.Drawing.Point(230, 125)
+        Me.cb_lowset.Location = New System.Drawing.Point(230, 129)
         Me.cb_lowset.Name = "cb_lowset"
         Me.cb_lowset.Size = New System.Drawing.Size(65, 17)
         Me.cb_lowset.TabIndex = 15
@@ -200,12 +200,19 @@ Partial Class Form1
         '
         'StatusStrip1
         '
-        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSSL_ver})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 232)
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1, Me.TSSL_ver})
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 258)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(308, 22)
+        Me.StatusStrip1.Size = New System.Drawing.Size(637, 22)
         Me.StatusStrip1.TabIndex = 16
         Me.StatusStrip1.Text = "StatusStrip1"
+        '
+        'ToolStripStatusLabel1
+        '
+        Me.ToolStripStatusLabel1.IsLink = True
+        Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
+        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(40, 17)
+        Me.ToolStripStatusLabel1.Text = "About"
         '
         'TSSL_ver
         '
@@ -213,110 +220,111 @@ Partial Class Form1
         Me.TSSL_ver.Size = New System.Drawing.Size(25, 17)
         Me.TSSL_ver.Text = "aaa"
         '
-        'RTB1
-        '
-        Me.RTB1.Location = New System.Drawing.Point(360, 13)
-        Me.RTB1.Name = "RTB1"
-        Me.RTB1.Size = New System.Drawing.Size(175, 89)
-        Me.RTB1.TabIndex = 17
-        Me.RTB1.Text = ""
-        '
-        'RTB2
-        '
-        Me.RTB2.Location = New System.Drawing.Point(541, 13)
-        Me.RTB2.Name = "RTB2"
-        Me.RTB2.Size = New System.Drawing.Size(218, 83)
-        Me.RTB2.TabIndex = 18
-        Me.RTB2.Text = ""
-        '
-        'RTB3
-        '
-        Me.RTB3.Location = New System.Drawing.Point(360, 110)
-        Me.RTB3.Name = "RTB3"
-        Me.RTB3.Size = New System.Drawing.Size(191, 93)
-        Me.RTB3.TabIndex = 19
-        Me.RTB3.Text = ""
-        '
-        'RTB4
-        '
-        Me.RTB4.Location = New System.Drawing.Point(557, 111)
-        Me.RTB4.Name = "RTB4"
-        Me.RTB4.Size = New System.Drawing.Size(198, 92)
-        Me.RTB4.TabIndex = 20
-        Me.RTB4.Text = ""
-        '
-        'TextBox1
-        '
-        Me.TextBox1.Location = New System.Drawing.Point(360, 219)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(123, 20)
-        Me.TextBox1.TabIndex = 21
-        '
-        'RTB5
-        '
-        Me.RTB5.Location = New System.Drawing.Point(12, 258)
-        Me.RTB5.Name = "RTB5"
-        Me.RTB5.Size = New System.Drawing.Size(187, 81)
-        Me.RTB5.TabIndex = 22
-        Me.RTB5.Text = ""
-        '
-        'RTB6
-        '
-        Me.RTB6.Location = New System.Drawing.Point(205, 258)
-        Me.RTB6.Name = "RTB6"
-        Me.RTB6.Size = New System.Drawing.Size(164, 81)
-        Me.RTB6.TabIndex = 23
-        Me.RTB6.Text = ""
-        '
-        'RTB7
-        '
-        Me.RTB7.Location = New System.Drawing.Point(375, 254)
-        Me.RTB7.Name = "RTB7"
-        Me.RTB7.Size = New System.Drawing.Size(187, 85)
-        Me.RTB7.TabIndex = 24
-        Me.RTB7.Text = ""
-        '
-        'RTB8
-        '
-        Me.RTB8.Location = New System.Drawing.Point(568, 254)
-        Me.RTB8.Name = "RTB8"
-        Me.RTB8.Size = New System.Drawing.Size(164, 85)
-        Me.RTB8.TabIndex = 25
-        Me.RTB8.Text = ""
-        '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(227, 69)
+        Me.Button1.Location = New System.Drawing.Point(227, 42)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(68, 43)
+        Me.Button1.Size = New System.Drawing.Size(68, 47)
         Me.Button1.TabIndex = 26
         Me.Button1.Text = "InGame Config"
         Me.Button1.UseVisualStyleBackColor = True
         '
-        'RTB9
+        'lv_AccList
         '
-        Me.RTB9.Location = New System.Drawing.Point(348, 496)
-        Me.RTB9.Name = "RTB9"
-        Me.RTB9.Size = New System.Drawing.Size(203, 98)
-        Me.RTB9.TabIndex = 27
-        Me.RTB9.Text = ""
+        Me.lv_AccList.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1})
+        Me.lv_AccList.HideSelection = False
+        Me.lv_AccList.Location = New System.Drawing.Point(340, 12)
+        Me.lv_AccList.Name = "lv_AccList"
+        Me.lv_AccList.Size = New System.Drawing.Size(176, 236)
+        Me.lv_AccList.TabIndex = 28
+        Me.lv_AccList.UseCompatibleStateImageBehavior = False
+        Me.lv_AccList.View = System.Windows.Forms.View.List
+        '
+        'ColumnHeader1
+        '
+        Me.ColumnHeader1.Text = "name"
+        Me.ColumnHeader1.Width = 273
+        '
+        'btnSaveAcc
+        '
+        Me.btnSaveAcc.Location = New System.Drawing.Point(522, 12)
+        Me.btnSaveAcc.Name = "btnSaveAcc"
+        Me.btnSaveAcc.Size = New System.Drawing.Size(98, 23)
+        Me.btnSaveAcc.TabIndex = 29
+        Me.btnSaveAcc.Text = "Save Account"
+        Me.btnSaveAcc.UseVisualStyleBackColor = True
+        '
+        'BtnSwitchAcc
+        '
+        Me.BtnSwitchAcc.Location = New System.Drawing.Point(522, 41)
+        Me.BtnSwitchAcc.Name = "BtnSwitchAcc"
+        Me.BtnSwitchAcc.Size = New System.Drawing.Size(98, 23)
+        Me.BtnSwitchAcc.TabIndex = 30
+        Me.BtnSwitchAcc.Text = "Switch Account"
+        Me.BtnSwitchAcc.UseVisualStyleBackColor = True
+        '
+        'btnDeleteAcc
+        '
+        Me.btnDeleteAcc.Location = New System.Drawing.Point(522, 70)
+        Me.btnDeleteAcc.Name = "btnDeleteAcc"
+        Me.btnDeleteAcc.Size = New System.Drawing.Size(98, 23)
+        Me.btnDeleteAcc.TabIndex = 31
+        Me.btnDeleteAcc.Text = "Delete Account"
+        Me.btnDeleteAcc.UseVisualStyleBackColor = True
+        '
+        'BtnKill
+        '
+        Me.BtnKill.Location = New System.Drawing.Point(522, 212)
+        Me.BtnKill.Name = "BtnKill"
+        Me.BtnKill.Size = New System.Drawing.Size(98, 23)
+        Me.BtnKill.TabIndex = 32
+        Me.BtnKill.Text = "Kill Genshin"
+        Me.BtnKill.UseVisualStyleBackColor = True
+        '
+        'cb_autoRestart
+        '
+        Me.cb_autoRestart.AutoSize = True
+        Me.cb_autoRestart.Location = New System.Drawing.Point(522, 110)
+        Me.cb_autoRestart.Name = "cb_autoRestart"
+        Me.cb_autoRestart.Size = New System.Drawing.Size(85, 17)
+        Me.cb_autoRestart.TabIndex = 33
+        Me.cb_autoRestart.Text = "Auto Restart"
+        Me.cb_autoRestart.UseVisualStyleBackColor = True
+        '
+        'cb_NoPop
+        '
+        Me.cb_NoPop.AutoSize = True
+        Me.cb_NoPop.Location = New System.Drawing.Point(522, 133)
+        Me.cb_NoPop.Name = "cb_NoPop"
+        Me.cb_NoPop.Size = New System.Drawing.Size(84, 17)
+        Me.cb_NoPop.TabIndex = 34
+        Me.cb_NoPop.Text = "No Pops Up"
+        Me.cb_NoPop.UseVisualStyleBackColor = True
+        '
+        'cb_MultiAcc
+        '
+        Me.cb_MultiAcc.AutoSize = True
+        Me.cb_MultiAcc.Location = New System.Drawing.Point(173, 101)
+        Me.cb_MultiAcc.Name = "cb_MultiAcc"
+        Me.cb_MultiAcc.Size = New System.Drawing.Size(91, 17)
+        Me.cb_MultiAcc.TabIndex = 35
+        Me.cb_MultiAcc.Text = "Multi Account"
+        Me.cb_MultiAcc.UseVisualStyleBackColor = True
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(308, 254)
-        Me.Controls.Add(Me.RTB9)
+        Me.ClientSize = New System.Drawing.Size(637, 280)
+        Me.Controls.Add(Me.cb_MultiAcc)
+        Me.Controls.Add(Me.cb_NoPop)
+        Me.Controls.Add(Me.cb_autoRestart)
+        Me.Controls.Add(Me.BtnKill)
+        Me.Controls.Add(Me.btnDeleteAcc)
+        Me.Controls.Add(Me.BtnSwitchAcc)
+        Me.Controls.Add(Me.btnSaveAcc)
+        Me.Controls.Add(Me.lv_AccList)
         Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.RTB8)
-        Me.Controls.Add(Me.RTB7)
-        Me.Controls.Add(Me.RTB6)
-        Me.Controls.Add(Me.RTB5)
-        Me.Controls.Add(Me.TextBox1)
-        Me.Controls.Add(Me.RTB4)
-        Me.Controls.Add(Me.RTB3)
-        Me.Controls.Add(Me.RTB2)
-        Me.Controls.Add(Me.RTB1)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.cb_lowset)
         Me.Controls.Add(Me.Label5)
@@ -364,15 +372,15 @@ Partial Class Form1
     Friend WithEvents cb_lowset As CheckBox
     Friend WithEvents StatusStrip1 As StatusStrip
     Friend WithEvents TSSL_ver As ToolStripStatusLabel
-    Friend WithEvents RTB1 As RichTextBox
-    Friend WithEvents RTB2 As RichTextBox
-    Friend WithEvents RTB3 As RichTextBox
-    Friend WithEvents RTB4 As RichTextBox
-    Friend WithEvents TextBox1 As TextBox
-    Friend WithEvents RTB5 As RichTextBox
-    Friend WithEvents RTB6 As RichTextBox
-    Friend WithEvents RTB7 As RichTextBox
-    Friend WithEvents RTB8 As RichTextBox
     Friend WithEvents Button1 As Button
-    Friend WithEvents RTB9 As RichTextBox
+    Friend WithEvents lv_AccList As ListView
+    Friend WithEvents btnSaveAcc As Button
+    Friend WithEvents BtnSwitchAcc As Button
+    Friend WithEvents btnDeleteAcc As Button
+    Friend WithEvents BtnKill As Button
+    Friend WithEvents cb_autoRestart As CheckBox
+    Friend WithEvents cb_NoPop As CheckBox
+    Friend WithEvents ColumnHeader1 As ColumnHeader
+    Friend WithEvents cb_MultiAcc As CheckBox
+    Friend WithEvents ToolStripStatusLabel1 As ToolStripStatusLabel
 End Class

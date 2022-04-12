@@ -22,6 +22,7 @@ Partial Class Form2
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form2))
         Me.CB_Language = New System.Windows.Forms.ComboBox()
         Me.CB_Voice = New System.Windows.Forms.ComboBox()
         Me.Bt_savesettings = New System.Windows.Forms.Button()
@@ -287,6 +288,7 @@ Partial Class Form2
         Me.Controls.Add(Me.CB_Voice)
         Me.Controls.Add(Me.CB_Language)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.Name = "Form2"
         Me.Text = "InGame Config"
