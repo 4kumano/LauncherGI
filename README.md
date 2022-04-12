@@ -2,7 +2,7 @@
 A simple Genshin Impact Launcher WRITTEN with VB.NET
 
 ## Screenshots
-![image](https://github.com/4kumano/LauncherGI/blob/main/image/Screenshot_522.png)
+![image](https://github.com/4kumano/LauncherGI/blob/main/image/Screenshot_554.png)
 ![image2](https://github.com/4kumano/LauncherGI/blob/main/image/Screenshot_521.png)
 
 ## Feature
@@ -13,6 +13,8 @@ A simple Genshin Impact Launcher WRITTEN with VB.NET
 - Low Setting Graphics 
 - InGame Setting (Voice,language,Volume)
 - Auto CheckUpdate
+- Multi Account
+- Kill Genshin
 
 ## How to use
 1. download this app
